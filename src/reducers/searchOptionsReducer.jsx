@@ -1,12 +1,13 @@
-export default function searchResultsReducer(
+export default function searchOptionsReducer(
   state={
-    searchResultsVisible: true
+    from: 'Madrid',
+    to: 'Berlin'
   }, action) {
 
-  if(action.type==='SHOW_SEARCH_RESULTS') {
+  if(action.type==='FROM_OPTION_CHANGED') {
     return {...state, searchResultsVisible: true }
   }
-  if(action.type==='HIDE_SEARCH_RESULTS') {
+  if(action.type==='TO_OPTION_CHANGED') {
     return {...state, searchResultsVisible: false }
   }
   console.log('state:',state);
