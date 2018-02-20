@@ -4,10 +4,10 @@ import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 export default class Form extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      from: '',
-      to: ''
-    };
+    // this.state = {
+    //   from: '',
+    //   to: ''
+    // };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,6 +22,7 @@ export default class Form extends Component {
 
   }
   render() {
+    console.log('props::', this.props.searchResultsVisible);
     return (
       <Fragment>
         <h2>Please select your destiny</h2>

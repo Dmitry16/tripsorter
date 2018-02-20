@@ -6,7 +6,14 @@ import { Footer } from '../components/footer';
 import { connect } from 'react-redux';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+
+    console.log('props:', this.props.searchResultsVisible);
+
     return (
       <div className="App">
         <header className="App-header">
@@ -22,7 +29,7 @@ class App extends Component {
 
 const mapStateToProps = store => (
   {
-
+    searchResultsVisible: store.searchResultsVisible,
   }
 )
 

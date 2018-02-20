@@ -1,4 +1,4 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 export const Footer = (props) => {
@@ -18,7 +18,7 @@ export const Footer = (props) => {
   `
     return(
       <FooterWrapper>
-        <P>Developed by Dmytro</P>
+        <P> Developed by Dmytro </P>
       </FooterWrapper>
     )
 }
