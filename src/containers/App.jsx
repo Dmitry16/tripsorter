@@ -4,7 +4,10 @@ import '../css/App.css';
 import SearchPage from '../components/searchPage';
 import { Footer } from '../components/footer';
 import { connect } from 'react-redux';
+import { Container_main } from '../components/styled/wrappers'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+
 
 class App extends Component {
   constructor(props) {
@@ -17,23 +20,29 @@ class App extends Component {
 
     return (
       <MuiThemeProvider>
-        <Fragment>
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
+        <Container_main>
+          <AppBar
+            title="Title"
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+          >
             <h1 className="App-title">Welcome to Trip Sorter!</h1>
-          </header>
+          </AppBar>
           <SearchPage />
-          <Footer />
-        </Fragment>
+          <AppBar
+            title="Title"
+            iconClassNameRight="muidocs-icon-navigation-expand-more"
+          >
+          </AppBar>
+        </Container_main>
       </MuiThemeProvider>
     );
   }
 }
 
-const mapStateToProps = store => (
-  {
+const mapStateToProps = store => ({
     searchResultsVisible: store.searchResultsVisible,
-  }
-)
+    searchFrom: store.from,
+    searchTo: store.to,
+  });
 
 export default connect(mapStateToProps)(App)
