@@ -1,15 +1,17 @@
 export default function searchOptionsReducer(
   state={
-    from: 'Madrid',
-    to: 'Berlin'
+    strFrom: '',
+    strTo: '',
+    travelMode: '',
   }, action) {
 
-  if(action.type==='FROM_OPTION_CHANGED') {
-    return {...state, searchResultsVisible: true }
+  if(action.type==='NEW_SEARCH') {
+
+    return {...state,
+      strFrom: action.payload[0],
+      strTo: action.payload[1],
+      travelMode: action.payload[2]
+    }
   }
-  if(action.type==='TO_OPTION_CHANGED') {
-    return {...state, searchResultsVisible: false }
-  }
-  console.log('state:',state);
   return state;
 }

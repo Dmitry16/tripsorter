@@ -1,14 +1,29 @@
 export default function searchResultsReducer(
   state={
-    searchResultsVisible: true
+    filteredData: false,
+    visible: false,
+    sortedTrip: [],
   }, action) {
 
-  if(action.type==='SHOW_SEARCH_RESULTS') {
-    return {...state, searchResultsVisible: true }
+  switch (action.type) {
+    case 'NEW_SEARCH': {
+      return {...state,
+        visible: true,
+      }
+    }
+    case 'FETCH_DATA_FULFILLED': {
+        return {...state,
+          filteredData: true,
+          sortedTrip: [ action.payload[0],
+                        action.payload[1] ? action.payload[1] : null,
+                      ],
+        }
+      }
+    case 'RESET_SEARCH': {
+        return {...state,
+          visible: false,
+        }
+      }
   }
-  if(action.type==='HIDE_SEARCH_RESULTS') {
-    return {...state, searchResultsVisible: false }
-  }
-  console.log('state:',state);
   return state;
 }

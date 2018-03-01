@@ -3,6 +3,6 @@ import searchResultsReducer from './searchResultsReducer';
 import searchOptionsReducer from './searchOptionsReducer';
 
 export default combineReducers({
-  searchResultsReducer,
-  searchOptionsReducer
+  searchResults: searchResultsReducer,
+  searchOptions: searchOptionsReducer,
 });
