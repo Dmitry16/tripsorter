@@ -8,5 +8,7 @@ export function newSearch(strFrom, strTo, travelMode) {
   }
 }
 export function resetSearch() {
-  return { type: 'RESET_SEARCH' }
+  return {
+    type: 'RESET_SEARCH',
+ }
 }

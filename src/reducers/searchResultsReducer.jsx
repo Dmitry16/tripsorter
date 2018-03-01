@@ -21,7 +21,8 @@ export default function searchResultsReducer(
       }
     case 'RESET_SEARCH': {
         return {...state,
-          visible: false,
+          filteredData: false,
+          sortedTrip: [],
         }
       }
   }

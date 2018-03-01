@@ -20,11 +20,18 @@ const styleP = {
   fontSize: '12px',
   color: 'steelblue',
 }
+const listItemStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: 5,
+}
 
 let list_arr = this.props.sortedTrip.map((trip)=>{
     if (trip)
     return (
-      <ListItem primaryText={`${trip.departure} -
+      <ListItem style={listItemStyle} primaryText={`${trip.departure} -
         ${trip.arrival}`} rightIcon={<ActionInfo />} >
         <p style={styleP}>{`${trip.transport} ${trip.reference}
         ${trip.duration.h}h${trip.duration.m} ${trip.cost}€`}</p>

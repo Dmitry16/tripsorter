@@ -8,16 +8,20 @@ export default class SearchResults extends Component {
   constructor(props) {
     super(props);
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleReserve = this.handleReserve.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+  }
+  handleReserve() {
+
   }
 
-  handleSubmit() {
+  handleClose() {
     this.props.dispatch(resetSearch());
   }
 
-  handleClick() {
-
+  handleReset() {
+    this.props.dispatch(resetSearch());
   }
 
   render() {
@@ -39,11 +43,11 @@ export default class SearchResults extends Component {
         <h2 style={h2Style}>Search Results</h2>
         <SearchList {...this.props} />
         <RaisedButton label="Reserve" secondary={true} fullWidth={true}
-          style={{marginTop:10}} onClick={this.handleSubmit} />
+          style={{marginTop:10}} onClick={this.handleReserve} />
         <RaisedButton label="Close" primary={true}
-          style={buttonStyle} onClick={this.handleClick} />
+          style={buttonStyle} onClick={this.handleClose} />
         <RaisedButton label="Reset" default={true}
-          style={buttonStyle} onClick={this.handleClick} />
+          style={buttonStyle} onClick={this.handleReset} />
       </Fragment>
     );
   }
