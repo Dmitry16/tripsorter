@@ -25,22 +25,40 @@ const listItemStyle = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'space-between',
-  padding: 5,
 }
-
-let list_arr = this.props.sortedTrip.map((trip)=>{
-    if (trip)
-    return (
-      <ListItem style={listItemStyle} primaryText={`${trip.departure} -
-        ${trip.arrival}`} rightIcon={<ActionInfo />} >
-        <p style={styleP}>{`${trip.transport} ${trip.reference}
-        ${trip.duration.h}h${trip.duration.m} ${trip.cost}€`}</p>
-      </ListItem>
-    )
+const divTotalStyle = {
+  color: 'white',
+  background: 'lightgray',
+  padding: '10px 5px',
+  margin: '8px 0 -10px',
+}
+console.log('this.props.sortedTrip',this.props.sortedTrip);
+let tripTotals = {};
+let mapped_list = [];
+let counter = 0;
+this.props.sortedTrip.map((trip,id)=>{
+    if (trip && id < 2 && (typeof trip === 'object'))
+      mapped_list.push(
+        <ListItem key={id} style={listItemStyle} primaryText={`${trip.departure} -
+          ${trip.arrival}`} rightIcon={<ActionInfo />} >
+          <p style={styleP}>{`${trip.transport} ${trip.reference}
+          ${trip.duration.h}h${trip.duration.m} ${trip.cost}€`}</p>
+        </ListItem>
+      );
+    else if (typeof trip === 'number' && counter === 0) {
+      tripTotals.totalDuration = this.props.sortedTrip[id];
+      tripTotals.totalCost = this.props.sortedTrip[id+1];
+      counter++;
+    }
 });
+
     return (
       <List>
-        { list_arr }
+        { mapped_list }
+
+        <div style={divTotalStyle}> {`TOTAL(duration/cost):
+          ${tripTotals.totalDuration}h/${tripTotals.totalCost}€`}
+        </div>
       </List>
     )
   }

@@ -16,6 +16,8 @@ export default function searchResultsReducer(
           filteredData: true,
           sortedTrip: [ action.payload[0],
                         action.payload[1] ? action.payload[1] : null,
+                        action.payload[2] ? action.payload[2] : null,
+                        action.payload[3] ? action.payload[3] : null,                        
                       ],
         }
       }

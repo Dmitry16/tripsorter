@@ -26,8 +26,6 @@ export default class SearchResults extends Component {
 
   render() {
 
-    // console.log('this.props.firstPartTrip',this.props.firstPartTrip);
-
     const buttonStyle = {
       margin: 0,
       width: '50%',

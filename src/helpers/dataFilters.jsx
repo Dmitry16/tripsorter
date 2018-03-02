@@ -106,13 +106,30 @@ const filterCheapest = (arr) => {
   });
   return arr;
 }
+
+//Calculate total duration & cost
+const calculateTripTotals = (arr) => {
+  console.log('total input',arr);
+  let tripTotals = {};
+  tripTotals.totalDuration = 0;
+  tripTotals.totalCost = 0;
+  arr.forEach(key => {
+    console.log('zz',tripTotals.totalDuration +=
+    (parseInt(key.duration.h) * 60 + parseInt(key.duration.m))/60);
+    console.log(tripTotals.totalCost += (key.cost));
+  });
+  arr.push(tripTotals.totalDuration, tripTotals.totalCost);
+  console.log('totals output',arr);
+  return arr;
+}
+
 //find the cheapest trips
 const findCheapest = (arr) => {
   console.log('findCheapest input:',arr);
   let mapped = [];
   console.log('mapped last',mapped);
   console.log('filtered',filterCheapest(arr));
-  return composeFinalRoute(filterCheapest(arr));
+  return calculateTripTotals(composeFinalRoute(filterCheapest(arr)));
 }
 
 const findFastest = (arr) => {
@@ -134,7 +151,7 @@ const findFastest = (arr) => {
   // });
   // console.log('mapped last',mapped);
   console.log('filtered',filterByObjProps(arr));
-  return composeFinalRoute(filterByObjProps(arr));
+  return calculateTripTotals(composeFinalRoute(filterByObjProps(arr)));
 }
 
   directTrips(data, from, to)
