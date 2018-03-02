@@ -17,7 +17,7 @@ export default function searchResultsReducer(
           sortedTrip: [ action.payload[0],
                         action.payload[1] ? action.payload[1] : null,
                         action.payload[2] ? action.payload[2] : null,
-                        action.payload[3] ? action.payload[3] : null,                        
+                        action.payload[3] ? action.payload[3] : null,
                       ],
         }
       }
@@ -25,6 +25,7 @@ export default function searchResultsReducer(
         return {...state,
           filteredData: false,
           sortedTrip: [],
+          visible: false,
         }
       }
   }

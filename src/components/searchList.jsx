@@ -28,6 +28,7 @@ const listItemStyle = {
 }
 const divTotalStyle = {
   color: 'white',
+  fontWeight: 100,
   background: 'lightgray',
   padding: '10px 5px',
   margin: '8px 0 -10px',
@@ -56,8 +57,8 @@ this.props.sortedTrip.map((trip,id)=>{
       <List>
         { mapped_list }
 
-        <div style={divTotalStyle}> {`TOTAL(duration/cost):
-          ${tripTotals.totalDuration}h/${tripTotals.totalCost}€`}
+        <div style={divTotalStyle}> {`TOTAL (duration/ cost):
+          ${tripTotals.totalDuration}h/ ${tripTotals.totalCost}€`}
         </div>
       </List>
     )

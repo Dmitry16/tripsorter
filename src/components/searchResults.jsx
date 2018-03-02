@@ -42,9 +42,7 @@ export default class SearchResults extends Component {
         <SearchList {...this.props} />
         <RaisedButton label="Reserve" secondary={true} fullWidth={true}
           style={{marginTop:10}} onClick={this.handleReserve} />
-        <RaisedButton label="Close" primary={true}
-          style={buttonStyle} onClick={this.handleClose} />
-        <RaisedButton label="Reset" default={true}
+        <RaisedButton label="Reset" primary={true} fullWidth={true}
           style={buttonStyle} onClick={this.handleReset} />
       </Fragment>
     );
