@@ -17,9 +17,7 @@ export default class SearchForm extends Component {
       travelMode: 'cheapest',
       primaryCheapest: true,
       primaryFastest: false,
-      // primaryMode: true,
-      // defaultMode: false,
-    };
+    }
     this.handleChangeFrom = this.handleChangeFrom.bind(this);
     this.handleChangeTo = this.handleChangeTo.bind(this);
     this.handleClick = this.handleClick.bind(this);

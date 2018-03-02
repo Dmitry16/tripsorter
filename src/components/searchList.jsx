@@ -8,7 +8,6 @@ export default class SearchList extends Component {
 
     this.handleClick = this.handleClick.bind(this);
   }
-
   handleSubmit() {
   }
   handleClick() {
