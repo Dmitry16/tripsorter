@@ -154,36 +154,40 @@ const findFastest = (arr) => {
   return calculateTripTotals(composeFinalRoute(filterByObjProps(arr)));
 }
 
-  directTrips(data, from, to)
-  deleteRepeatingKeys(findTransitionPoints(data, from));
-  transitionalTrips(data, transPointsFrom, to);
+  const theBigOne = (data, from, to) => {
 
-  if (directTransport.length!==0 && travelMode==='cheapest') {
-    directTransport = findCheapest(directTransport);
-    console.log('final output:', directTransport);
-    return directTransport;
-  }
-  else if (directTransport.length!==0 && travelMode==='fastest') {
-    directTransport = findFastest(directTransport);
-    console.log('final output:', directTransport);
-    return directTransport;
-  }
-  else if (directTransport.length === 0) {
-    let complexTrip = [...transitTransport,...transitTrips];
-    transitTrips = composeTrip(complexTrip, transitTrips, to);
-    transitTrips = deleteRepeatingKeys(transitTrips);
+    directTrips(data, from, to)
+    deleteRepeatingKeys(findTransitionPoints(data, from));
+    transitionalTrips(data, transPointsFrom, to);
 
-    if(travelMode==='cheapest') {
-      transitTrips = findCheapest(transitTrips);
-      console.log('final output:', transitTrips);
-      return transitTrips;
+    if (directTransport.length!==0 && travelMode==='cheapest') {
+      directTransport = findCheapest(directTransport);
+      console.log('final output:', directTransport);
+      return directTransport;
     }
-    else {
-      transitTrips = findFastest(transitTrips);
-      console.log('final output:', transitTrips);
-      return transitTrips;
+    else if (directTransport.length!==0 && travelMode==='fastest') {
+      directTransport = findFastest(directTransport);
+      console.log('final output:', directTransport);
+      return directTransport;
+    }
+    else if (directTransport.length === 0) {
+      let complexTrip = [...transitTransport,...transitTrips];
+      transitTrips = composeTrip(complexTrip, transitTrips, to);
+      transitTrips = deleteRepeatingKeys(transitTrips);
+
+      if(travelMode==='cheapest') {
+        transitTrips = findCheapest(transitTrips);
+        console.log('final output:', transitTrips);
+        return transitTrips;
+      }
+      else {
+        transitTrips = findFastest(transitTrips);
+        console.log('final output:', transitTrips);
+        return transitTrips;
+      }
     }
   }
+return theBigOne(data, from, to);
 }
 
 export default tripsFilter;
