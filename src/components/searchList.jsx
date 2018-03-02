@@ -30,7 +30,7 @@ const divTotalStyle = {
   color: 'white',
   fontWeight: 100,
   background: 'lightgray',
-  padding: '10px 5px',
+  padding: '10px 2px',
   margin: '8px 0 -10px',
 }
 console.log('this.props.sortedTrip',this.props.sortedTrip);
