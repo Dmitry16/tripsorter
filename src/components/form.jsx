@@ -72,11 +72,15 @@ export default class SearchForm extends Component {
     const h2Style = {
       fontWeight: 400,
     };
+    const formStyle = {
+      width:'80%'
+    };
 
     return (
       <Fragment>
         <h2 style={h2Style}>Please select your trip</h2>
         <SelectField
+          style={formStyle}
           floatingLabelText="From"
           value={this.state.valueFrom}
           onChange={this.handleChangeFrom}
@@ -98,6 +102,7 @@ export default class SearchForm extends Component {
           floatingLabelText="To"
           value={this.state.valueTo}
           onChange={this.handleChangeTo}
+          style={{width:'80%'}}
         >
         <MenuItem value={1} primaryText="London" />
         <MenuItem value={2} primaryText="Paris" />

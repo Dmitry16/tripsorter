@@ -1,8 +1,8 @@
 //Libs
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 //Assets
 import logo from '../assets/logo.svg';
-import '../css/App.css';
+// import '../css/App.css';
 //Components
 import SearchPage from '../components/searchPage';
 import { connect } from 'react-redux';
@@ -22,15 +22,6 @@ class App extends Component {
 
     // console.log('this.props.firstPartTrip App:',this.props.firstPartTrip);
 
-    const paperStyle = {
-      height: 'auto',
-      width: 'auto',
-      margin: 20,
-      padding: 10,
-      textAlign: 'center',
-      display: 'flex',
-      justifyContent: 'space-around',
-    };
     const h1Style = {
       color: 'white',
       textAlign: 'center',
@@ -49,9 +40,7 @@ class App extends Component {
             <h1 style={h1Style}>Welcome to Trip Sorter!</h1>
           </AppBar>
 
-          <Paper style={paperStyle} zDepth={1} >
             <SearchPage {...this.props}/>
-          </Paper>
 
           <HorizontalLinearStepper />
 

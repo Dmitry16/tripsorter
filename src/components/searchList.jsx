@@ -16,7 +16,7 @@ export default class SearchList extends Component {
 
   render() {
 
-const styleP = {
+const additionalInfoStyle = {
   fontSize: '12px',
   color: 'steelblue',
 }
@@ -42,7 +42,7 @@ this.props.sortedTrip.map((trip,id)=>{
       mapped_list.push(
         <ListItem key={id} style={listItemStyle} primaryText={`${trip.departure} -
           ${trip.arrival}`} rightIcon={<ActionInfo />} >
-          <p style={styleP}>{`${trip.transport} ${trip.reference}
+          <p style={additionalInfoStyle}>{`${trip.transport} ${trip.reference}
           ${trip.duration.h}h${trip.duration.m} ${trip.cost}€`}</p>
         </ListItem>
       );
