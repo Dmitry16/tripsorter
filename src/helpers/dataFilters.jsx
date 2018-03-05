@@ -192,8 +192,6 @@ const findFastest = (arr) => {
         console.log('final output:', transitTrips);
         return console.log('transitTrips', transitTrips);
       }
-    } else {
-
     }
   }
 return startEngine(data, from, to);
