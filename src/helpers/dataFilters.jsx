@@ -81,15 +81,6 @@ const composeTrip = (inputArray, outputArray, to) => {
 
 const filterByObjProps = (arr) => {
   return arr.sort((a, b) => {
-  //   if (a - b) {
-  //     return -1;
-  //   }
-  //   if (a - b) {
-  //     return 1;
-  //   }
-  //   return 0;
-  // });
-  // console.log('output filterProps', arr);
     return parseInt(a.duration.h) - parseInt(b.duration.h);
   });
 }
@@ -140,22 +131,6 @@ const findCheapest = (arr) => {
 
 const findFastest = (arr) => {
   console.log('findFastest input:',arr);
-  // let mapped = [];
-  // let pastKeyDep=arr[0].arrival;
-  // arr.forEach((key) => {
-  //   if (pastKeyDep === key.arrival) {
-  //    // console.log('key.departure',key.departure);
-  //    mapped.push(key);
-  //   }
-  //   else {
-  //     console.log('mapped in else',filterByObjProps(mapped));
-  //     mapped = [];
-  //     mapped.push(key);
-  //     pastKeyDep=key.arrival;
-  //   }
-   // console.log('mapped',mapped);
-  // });
-  // console.log('mapped last',mapped);
   console.log('filtered',filterByObjProps(arr));
   return calculateTripTotals(composeFinalRoute(filterByObjProps(arr)));
 }
@@ -163,8 +138,6 @@ const findFastest = (arr) => {
   const startEngine = (data, from, to) => {
 
     directTrips(data, from, to)
-    deleteRepeatingKeys(findTransitionPoints(data, from));
-    transitionalTrips(data, transPointsFrom, to);
 
     if (directTransport.length!==0 && travelMode==='cheapest') {
       directTransport = findCheapest(directTransport);
@@ -176,21 +149,25 @@ const findFastest = (arr) => {
       console.log('final output:', directTransport);
       return directTransport;
     }
-    else if (directTransport.length === 0 && transitTrips.length !== 0) {
-      let complexTrip = [...transitTransport,...transitTrips];
-      transitTrips = composeTrip(complexTrip, transitTrips, to);
-      transitTrips = deleteRepeatingKeys(transitTrips);
+    else if ( directTransport.length === 0 ) {
+      deleteRepeatingKeys(findTransitionPoints(data, from));
+      transitionalTrips(data, transPointsFrom, to);
+      if ( transitTrips.length !== 0 ) {
+        let complexTrip = [...transitTransport,...transitTrips];
+        transitTrips = composeTrip(complexTrip, transitTrips, to);
+        transitTrips = deleteRepeatingKeys(transitTrips);
 
-      if(travelMode==='cheapest') {
-        transitTrips = findCheapest(transitTrips);
-        console.log('final output:', transitTrips);
-        return transitTrips;
-      }
-      else {
-        console.log('zzz',transitTrips);
-        transitTrips = findFastest(transitTrips);
-        console.log('final output:', transitTrips);
-        return console.log('transitTrips', transitTrips);
+        if(travelMode==='cheapest') {
+          transitTrips = findCheapest(transitTrips);
+          console.log('final output:', transitTrips);
+          return transitTrips;
+        }
+        else {
+          console.log('zzz',transitTrips);
+          transitTrips = findFastest(transitTrips);
+          console.log('final output:', transitTrips);
+          return console.log('transitTrips', transitTrips);
+        }
       }
     }
   }
