@@ -129,8 +129,6 @@ const findFastest = (arr) => {
 }
 
   directTrips(data, from, to)
-  deleteRepeatingKeys(findTransitionPoints(data, from));
-  transitionalTrips(data, transPointsFrom, to);
 
   if (directTransport.length!==0 && travelMode==='cheapest') {
     directTransport = findCheapest(directTransport);
@@ -143,6 +141,8 @@ const findFastest = (arr) => {
     return directTransport;
   }
   else if (directTransport.length === 0) {
+    deleteRepeatingKeys(findTransitionPoints(data, from));
+    transitionalTrips(data, transPointsFrom, to);    
     let complexTrip = [...transitTransport,...transitTrips];
     transitTrips = composeTrip(complexTrip, transitTrips, to);
     transitTrips = deleteRepeatingKeys(transitTrips);
