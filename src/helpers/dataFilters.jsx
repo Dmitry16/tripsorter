@@ -49,18 +49,22 @@ const tripsFilter = (data, ...searchParams) => {
   }
 //check up if there is a direct transport from the transitional points
   const transitionalTrips = (data, arr, to) => {
+    let counter = 0;
     for (let i=0; i<data.deals.length; i++) {
       for (let j=0; j<arr.length; j++) {
         if ((data.deals[i].departure===arr[j]) && (data.deals[i].arrival===to)) {
           transitTrips.push(data.deals[i]);
-        }
-        else {
-          arr.forEach(point=>{
-            if(point!==data.deals[i].departure)
-              findTransitionPoints(data, arr[j], to);
-          });
+          counter++;
         }
       }
+    }
+    //if there is no direct transport from transitional points
+    //find other posibble transitional points for each points
+    if (counter===0) {
+      arr.forEach(point=>{
+        findTransitionPoints(data, point, to);
+      });
+      transitionalTrips(data, transPointsFrom, to);
     }
     return console.log('transitTrips::',deleteRepeatingKeys(transitTrips));
   }
@@ -172,7 +176,7 @@ const findFastest = (arr) => {
       console.log('final output:', directTransport);
       return directTransport;
     }
-    else if (directTransport.length === 0) {
+    else if (directTransport.length === 0 && transitTrips.length !== 0) {
       let complexTrip = [...transitTransport,...transitTrips];
       transitTrips = composeTrip(complexTrip, transitTrips, to);
       transitTrips = deleteRepeatingKeys(transitTrips);
@@ -188,6 +192,8 @@ const findFastest = (arr) => {
         console.log('final output:', transitTrips);
         return console.log('transitTrips', transitTrips);
       }
+    } else {
+
     }
   }
 return startEngine(data, from, to);
