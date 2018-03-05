@@ -55,8 +55,10 @@ const tripsFilter = (data, ...searchParams) => {
           transitTrips.push(data.deals[i]);
         }
         else {
-          findTransitionPoints(data, arr[j], to);
-          // transPointsNew.push(data.deals[i].arrival);
+          arr.forEach(point=>{
+            if(point!==data.deals[i].departure)
+              findTransitionPoints(data, arr[j], to);
+          });
         }
       }
     }
