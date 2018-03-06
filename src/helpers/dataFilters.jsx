@@ -17,7 +17,12 @@ const tripsFilter = (data, ...searchParams) => {
     }
     return directTransport;
   }
-  //if there is no direct transport then make an array of all direct (transitional) routes
+  //deleting the repeating key-names
+  const deleteRepeatingKeys = (arr) => {
+    let mediator = new Set(arr);
+    return arr = [...mediator];
+  }
+  //if there is no direct transport then make an array of all possible transitional routes
   const findTransitionPoints = (data, from) => {
     for (let i=0; i<data.deals.length; i++) {
       if (directTransport.length===0 && data.deals[i].departure===from) {
@@ -25,19 +30,9 @@ const tripsFilter = (data, ...searchParams) => {
           transitTransport.push(data.deals[i]);
       }
     }
+    transPointsFrom = deleteRepeatingKeys(transPointsFrom);
+    console.log(transPointsFrom);
     return transPointsFrom;
-  }
-//deleting the repeating key-names
-  // const deleteRepeatingKeys = (arr) => {
-  //   for (let j=0; j<arr.length; j++)
-  //     for (let i=1; i<arr.length; i++)
-  //       if (arr[j] === arr[i])
-  //         arr.splice(i,1);
-  //   return arr;
-  // }
-  const deleteRepeatingKeys = (arr) => {
-    let mediator = new Set(arr);
-    return arr = [...mediator];
   }
 //check up if there is a direct transport from the transitional points
   const transitionalTrips = (data, arr, to) => {
@@ -46,22 +41,10 @@ const tripsFilter = (data, ...searchParams) => {
         if ((data.deals[i].departure===arr[j]) && (data.deals[i].arrival===to)) {
           transitTrips.push(data.deals[i]);
         }
-        // else if
-        //   (data.deals[i].departure===arr[j])
-        //       transPointsNew.push(data.deals[i].arrival);
       }
     }
     return transitTrips;
   }
-//filter out the fastest trip
-// const findFastest = (arr) => {
-//   return arr.filter((key)=>{
-//     let h = parseInt(key.duration.h);
-//     if (h === 4) {
-//       return key;
-//     }
-//   });
-// }
 //compose a final route
 const composeTrip = (inputArray, outputArray, to) => {
   for (let i=0; i<inputArray.length; i++)
@@ -75,15 +58,6 @@ const composeTrip = (inputArray, outputArray, to) => {
 
 const filterByObjProps = (arr) => {
   return arr.sort((a, b) => {
-  //   if (a - b) {
-  //     return -1;
-  //   }
-  //   if (a - b) {
-  //     return 1;
-  //   }
-  //   return 0;
-  // });
-  // console.log('output filterProps', arr);
     return parseInt(a.duration.h) - parseInt(b.duration.h);
   });
 }
@@ -155,8 +129,6 @@ const findFastest = (arr) => {
 }
 
   directTrips(data, from, to)
-  deleteRepeatingKeys(findTransitionPoints(data, from));
-  transitionalTrips(data, transPointsFrom, to);
 
   if (directTransport.length!==0 && travelMode==='cheapest') {
     directTransport = findCheapest(directTransport);
@@ -169,6 +141,8 @@ const findFastest = (arr) => {
     return directTransport;
   }
   else if (directTransport.length === 0) {
+    deleteRepeatingKeys(findTransitionPoints(data, from));
+    transitionalTrips(data, transPointsFrom, to);    
     let complexTrip = [...transitTransport,...transitTrips];
     transitTrips = composeTrip(complexTrip, transitTrips, to);
     transitTrips = deleteRepeatingKeys(transitTrips);
