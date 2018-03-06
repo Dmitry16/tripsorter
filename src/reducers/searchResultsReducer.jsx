@@ -18,6 +18,8 @@ export default function searchResultsReducer(
                         action.payload[1] ? action.payload[1] : null,
                         action.payload[2] ? action.payload[2] : null,
                         action.payload[3] ? action.payload[3] : null,
+                        action.payload[4] ? action.payload[2] : null,
+                        action.payload[5] ? action.payload[3] : null,
                       ],
         }
       }
