@@ -17,8 +17,6 @@ class App extends Component {
   }
   render() {
 
-    console.log('this.propzz::',this.props.sortedTrip);
-
     const renderMainPage = () => {
       return (
         <MainPage {...this.props} />
