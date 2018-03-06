@@ -25,6 +25,8 @@ const listItemStyle = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'space-between',
+  height: 60,
+  padding: 0,
 }
 const divTotalStyle = {
   color: 'white',
@@ -38,12 +40,12 @@ let tripTotals = {};
 let mapped_list = [];
 let counter = 0;
 this.props.sortedTrip.map((trip,id)=>{
-    if (trip && id < 2 && (typeof trip === 'object'))
+    if (trip && typeof trip === 'object')
       mapped_list.push(
         <ListItem key={id} style={listItemStyle} primaryText={`${trip.departure} -
           ${trip.arrival}`} rightIcon={<ActionInfo />} >
-          <p style={additionalInfoStyle}>{`${trip.transport} ${trip.reference}
-          ${trip.duration.h}h${trip.duration.m} ${trip.cost}€`}</p>
+          <span style={additionalInfoStyle}>{`${trip.transport} ${trip.reference}
+          ${trip.duration.h}h${trip.duration.m} ${trip.cost}€`}</span>
         </ListItem>
       );
     else if (typeof trip === 'number' && counter === 0) {

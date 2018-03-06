@@ -10,8 +10,6 @@ export default class SearchPage extends Component {
 
   render() {
 
-    // console.log('this.props.firstPartTrip',this.props.firstPartTrip);
-
     const mainPaperStyle = {
       height: 'auto',
       width: 'auto',
@@ -25,7 +23,7 @@ export default class SearchPage extends Component {
     const style1 = {
       display: 'inline-block',
       textAlign: 'center',
-      height: 450,
+      height: 'auto',
       width: 300,
       margin: 10,
       padding: 20,
