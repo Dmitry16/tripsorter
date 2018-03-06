@@ -79,20 +79,18 @@ const composeTrip = (inputArray, outputArray, to) => {
             outputArray.push(inputArray[n]);
   //check up if the initial departure route is included
 
-  outputArray.forEach(keyOuter=>{
-    if(keyOuter.departure===from) {
-
-      //include the middle route
-
-        outputArray.forEach(key=>{
-          if(composeTripCounter === 0)
-            if(key.departure!==from && keyOuter.arrival!==to) {
-              composeTripCounter++;
-              composeTrip(inputArray, outputArray, key.departure);
-            }   
-        });
-    }
-  });
+  //include the middle route
+      outputArray.forEach(keyOuter=>{
+        if(keyOuter.departure===from) {
+            outputArray.forEach(key=>{
+              if(composeTripCounter === 0)
+                if(key.departure!==from && keyOuter.arrival!==to) {
+                  composeTripCounter++;
+                  composeTrip(inputArray, outputArray, key.departure);
+                }
+            });
+        }
+      });
 
   if (composeTripCounter !== 0) {
     console.log('outputArray',outputArray);
@@ -100,6 +98,7 @@ const composeTrip = (inputArray, outputArray, to) => {
   } else {
     composeTrip(inputArray, outputArray, from);
   }
+  return outputArray;
 }
 //filter array by the object's props
 const filterByObjProps = (arr) => {
@@ -112,14 +111,28 @@ const composeFinalRoute = (arr) => {
   let outputArr = [];
   outputArr.push(arr[0]);
   for (let j=1; j<arr.length; j++) {
-    if (arr[0].arrival === arr[j].departure && outputArr.length < 2)
-      outputArr.push(arr[j]);
+    // if (arr[0].arrival === arr[j].departure && outputArr.length < 2)
+    //   outputArr.push(arr[j]);
 //find the middle part of the route
-    else if (arr[0].departure === arr[j].arrival && outputArr.length < 2)
+    if (arr[0].departure === arr[j].arrival && outputArr.length < 2)
       outputArr.push(arr[j]);
+    else if (arr[j].departure === from) {
+      outputArr.push(arr[j]);
+      outputArr.forEach(key=>{
+        if (arr[j].arrival !== key.departure) {
+          arr.forEach(arrKey=>{
+            if(arr[j].arrival === arrKey.departure)
+              outputArr.push(arrKey);
+          });
+        }
+      });
+    }
+    // else if (arr[j].departure !== from && arr[j].arrival !== to)
+    //   outputArr.push(arr[j]);
   }
-  return outputArr;
+  return deleteRepeatingKeys(outputArr);
 }
+
 //find the cheapest option
 const filterCheapest = (arr) => {
   arr.sort((a, b) => {
@@ -177,6 +190,7 @@ const findFastest = (arr) => {
       if ( transitTrips.length !== 0 ) {
         let complexTrip = [...transitTransport,...transitTrips];
         transitTrips = composeTrip(complexTrip, transitTrips, to);
+        console.log('transitTrips',transitTrips);
 
         if(travelMode==='cheapest') {
           transitTrips = findCheapest(transitTrips);
