@@ -2,13 +2,14 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Container_main } from '../components/styled/styled-components/wrappers';
 //Assets
 import '../css/App.css';
 //Components
 import ErrorBoundary from '../components/errorBoundary';
+import { Container_main } from '../components/styled/styled-components/wrappers';
 import MainPage from './mainPage';
-import About from '../components/about'
+import About from '../components/about';
+import { Header, Footer } from '../components/header';
 //Material-UI Components
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -18,29 +19,23 @@ class App extends Component {
   }
   render() {
 
-    console.log('this.propzz::',this.props.sortedTrip);
-
     const renderMainPage = () => {
       return (
         <MainPage {...this.props} />
       )
     }
-    // const renderAbout = () => {
-    //   return (
-    //     <About {...this.props} />
-    //   )
-    // }
-
     return (
       <Router>
-        <MuiThemeProvider>
-          <Container_main>
-            <ErrorBoundary>
-              <Route exact={true} path='/mainPage' render={renderMainPage} />
-              <Route exact={true} path='/' component={About} />
-            </ErrorBoundary>
-          </Container_main>
-        </MuiThemeProvider>
+        <ErrorBoundary>
+          <MuiThemeProvider>
+            <Container_main>
+              <Header />
+                <Route exact={true} path='/mainPage' render={renderMainPage} />
+                <Route exact={true} path='/' component={About} />
+              <Footer />
+            </Container_main>
+          </MuiThemeProvider>
+        </ErrorBoundary>
       </Router>
     );
   }

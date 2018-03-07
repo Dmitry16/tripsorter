@@ -16,3 +16,6 @@ export const style1 = {
   margin: 10,
   padding: 20,
 };
+export const AppBarStyle = {
+  textAlign: 'center',
+};
