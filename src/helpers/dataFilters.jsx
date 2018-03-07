@@ -9,6 +9,7 @@ const tripsFilter = (data, ...searchParams) => {
   let transitTransport = [];
   let complexTrip = [];
   let composeTripCounter = 0;
+  let isRecursion = false;
 
   //find direct transport
   const directTrips = (data, from, to) => {
@@ -65,6 +66,7 @@ const tripsFilter = (data, ...searchParams) => {
       arr.forEach(point=>{
         findTransitionPoints(data, point, to);
       });
+      isRecursion = true;
       transitionalTrips(data, transPointsFrom, to);
     }
     return console.log('transitTrips::',deleteRepeatingKeys(transitTrips));
@@ -80,6 +82,7 @@ const composeTrip = (inputArray, outputArray, to) => {
   //check up if the initial departure route is included
 
   //include the middle route
+    if (isRecursion)
       outputArray.forEach(keyOuter=>{
         if(keyOuter.departure===from) {
             outputArray.forEach(key=>{
@@ -95,7 +98,7 @@ const composeTrip = (inputArray, outputArray, to) => {
   if (composeTripCounter !== 0) {
     console.log('outputArray',outputArray);
     return outputArray;
-  } else {
+  } else if (isRecursion) {
     composeTrip(inputArray, outputArray, from);
   }
   return outputArray;
@@ -111,12 +114,12 @@ const composeFinalRoute = (arr) => {
   let outputArr = [];
   outputArr.push(arr[0]);
   for (let j=1; j<arr.length; j++) {
-    // if (arr[0].arrival === arr[j].departure && outputArr.length < 2)
-    //   outputArr.push(arr[j]);
+    if (arr[0].arrival === arr[j].departure && outputArr.length < 2)
+      outputArr.push(arr[j]);
 //find the middle part of the route
     if (arr[0].departure === arr[j].arrival && outputArr.length < 2)
       outputArr.push(arr[j]);
-    else if (arr[j].departure === from) {
+    else if (arr[j].departure === from && isRecursion) {
       outputArr.push(arr[j]);
       outputArr.forEach(key=>{
         if (arr[j].arrival !== key.departure) {
