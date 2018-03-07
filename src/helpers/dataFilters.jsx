@@ -1,8 +1,9 @@
 "use strict";
+import * as filters from './filterLib/filters';
+
 const tripsFilter = (data, ...searchParams) => {
 
   let [from, to, travelMode] = [...searchParams];
-  console.log(travelMode);
   let directTransport = [];
   let transPointsFrom = [];
   let transitTrips = [];
@@ -17,11 +18,6 @@ const tripsFilter = (data, ...searchParams) => {
     }
     return directTransport;
   }
-  //deleting the repeating key-names
-  const deleteRepeatingKeys = (arr) => {
-    let mediator = new Set(arr);
-    return arr = [...mediator];
-  }
   //if there is no direct transport then make an array of all possible transitional routes
   const findTransitionPoints = (data, from) => {
     for (let i=0; i<data.deals.length; i++) {
@@ -30,7 +26,7 @@ const tripsFilter = (data, ...searchParams) => {
           transitTransport.push(data.deals[i]);
       }
     }
-    transPointsFrom = deleteRepeatingKeys(transPointsFrom);
+    transPointsFrom = filters.deleteRepeatingKeys(transPointsFrom);
     console.log(transPointsFrom);
     return transPointsFrom;
   }
@@ -56,12 +52,6 @@ const composeTrip = (inputArray, outputArray, to) => {
   return outputArray;
 }
 
-const filterByObjProps = (arr) => {
-  return arr.sort((a, b) => {
-    return parseInt(a.duration.h) - parseInt(b.duration.h);
-  });
-}
-
 const composeFinalRoute = (arr) => {
   let outputArr = [];
   outputArr.push(arr[0]);
@@ -71,30 +61,8 @@ const composeFinalRoute = (arr) => {
     else if (arr[0].departure === arr[j].arrival && outputArr.length < 2)
       outputArr.push(arr[j]);
   }
+  console.log('composeFinalRoute',outputArr);
   return outputArr;
-}
-
-const filterCheapest = (arr) => {
-  arr.sort((a, b) => {
-    return parseInt(a.cost) - parseInt(b.cost);
-  });
-  return arr;
-}
-
-//Calculate total duration & cost
-const calculateTripTotals = (arr) => {
-  console.log('total input',arr);
-  let tripTotals = {};
-  tripTotals.totalDuration = 0;
-  tripTotals.totalCost = 0;
-  arr.forEach(key => {
-    console.log('zz',tripTotals.totalDuration +=
-    (parseInt(key.duration.h) * 60 + parseInt(key.duration.m))/60);
-    console.log(tripTotals.totalCost += (key.cost));
-  });
-  arr.push(tripTotals.totalDuration, tripTotals.totalCost);
-  console.log('totals output',arr);
-  return arr;
 }
 
 //find the cheapest trips
@@ -102,30 +70,22 @@ const findCheapest = (arr) => {
   console.log('findCheapest input:',arr);
   let mapped = [];
   console.log('mapped last',mapped);
-  console.log('filtered',filterCheapest(arr));
-  return calculateTripTotals(composeFinalRoute(filterCheapest(arr)));
+  console.log('filtered',filters.filterCheapest(arr));
+  return (
+    filters.calculateTripTotals(
+    composeFinalRoute(
+    filters.filterCheapest(arr)))
+  )
 }
-
+//find the fastest trips
 const findFastest = (arr) => {
   console.log('findFastest input:',arr);
-  // let mapped = [];
-  // let pastKeyDep=arr[0].arrival;
-  // arr.forEach((key) => {
-  //   if (pastKeyDep === key.arrival) {
-  //    // console.log('key.departure',key.departure);
-  //    mapped.push(key);
-  //   }
-  //   else {
-  //     console.log('mapped in else',filterByObjProps(mapped));
-  //     mapped = [];
-  //     mapped.push(key);
-  //     pastKeyDep=key.arrival;
-  //   }
-   // console.log('mapped',mapped);
-  // });
-  // console.log('mapped last',mapped);
-  console.log('filtered',filterByObjProps(arr));
-  return calculateTripTotals(composeFinalRoute(filterByObjProps(arr)));
+  console.log('filtered',filters.filterByObjProps(arr));
+  return (
+    filters.calculateTripTotals(
+    composeFinalRoute(
+    filters.filterByObjProps(arr)))
+  )
 }
 
   directTrips(data, from, to)
@@ -141,11 +101,11 @@ const findFastest = (arr) => {
     return directTransport;
   }
   else if (directTransport.length === 0) {
-    deleteRepeatingKeys(findTransitionPoints(data, from));
-    transitionalTrips(data, transPointsFrom, to);    
+    filters.deleteRepeatingKeys(findTransitionPoints(data, from));
+    transitionalTrips(data, transPointsFrom, to);
     let complexTrip = [...transitTransport,...transitTrips];
     transitTrips = composeTrip(complexTrip, transitTrips, to);
-    transitTrips = deleteRepeatingKeys(transitTrips);
+    transitTrips = filters.deleteRepeatingKeys(transitTrips);
 
     if(travelMode==='cheapest') {
       transitTrips = findCheapest(transitTrips);
