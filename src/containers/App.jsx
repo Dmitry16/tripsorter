@@ -1,18 +1,16 @@
 //Libs
 import React, { Component } from 'react';
-//Assets
-import logo from '../assets/logo.svg';
-// import '../css/App.css';
-//Components
-import SearchPage from '../components/searchPage';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Container_main } from '../components/styled/styled-components/wrappers';
+//Assets
+import '../css/App.css';
+//Components
+import ErrorBoundary from '../components/errorBoundary';
+import MainPage from './mainPage';
+import About from '../components/about'
 //Material-UI Components
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import Paper from 'material-ui/Paper';
-import ErrorBoundary from '../components/errorBoundary';
-import HorizontalLinearStepper from '../components/stepper';
 
 class App extends Component {
   constructor(props) {
@@ -20,38 +18,30 @@ class App extends Component {
   }
   render() {
 
-    // console.log('this.props.firstPartTrip App:',this.props.firstPartTrip);
+    console.log('this.propzz::',this.props.sortedTrip);
 
-    const h1Style = {
-      color: 'white',
-      textAlign: 'center',
-      width: '100%',
-      marginLeft: -70,
-    };
+    const renderMainPage = () => {
+      return (
+        <MainPage {...this.props} />
+      )
+    }
+    // const renderAbout = () => {
+    //   return (
+    //     <About {...this.props} />
+    //   )
+    // }
 
     return (
-      <MuiThemeProvider>
-        <Container_main>
-        <ErrorBoundary>
-          <AppBar
-            title=""
-            iconClassNameRight="muidocs-icon-navigation-expand-more"
-          >
-            <h1 style={h1Style}>Welcome to Trip Sorter!</h1>
-          </AppBar>
-
-            <SearchPage {...this.props}/>
-
-          <HorizontalLinearStepper />
-
-          <AppBar
-            title=""
-            iconClassNameRight="muidocs-icon-navigation-expand-more"
-          >
-          </AppBar>
-        </ErrorBoundary>
-        </Container_main>
-      </MuiThemeProvider>
+      <Router>
+        <MuiThemeProvider>
+          <Container_main>
+            <ErrorBoundary>
+              <Route exact={true} path='/mainPage' render={renderMainPage} />
+              <Route exact={true} path='/' component={About} />
+            </ErrorBoundary>
+          </Container_main>
+        </MuiThemeProvider>
+      </Router>
     );
   }
 }

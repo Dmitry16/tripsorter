@@ -11,15 +11,13 @@ export default class SearchForm extends Component {
     super(props);
     this.state = {
       valueFrom: 1,
-      valueTo: 6,
+      valueTo: 4,
       strFrom: 'London',
-      strTo: 'Brussels',
+      strTo: 'Moscow',
       travelMode: 'cheapest',
       primaryCheapest: true,
       primaryFastest: false,
-      // primaryMode: true,
-      // defaultMode: false,
-    };
+    }
     this.handleChangeFrom = this.handleChangeFrom.bind(this);
     this.handleChangeTo = this.handleChangeTo.bind(this);
     this.handleClick = this.handleClick.bind(this);
