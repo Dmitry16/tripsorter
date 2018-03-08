@@ -15,3 +15,23 @@ export function fetchData() {
       })
   }
 }
+
+export function fetchOffers(dispatch) {
+  const request = axios({
+    method: 'GET',
+    url: `${BASE_URL}/data`,
+    headers: []
+  });
+
+  request.then((response) => {
+    dispatch(fetchOffersSuccess(response));
+  })
+  .catch((err) => {
+    dispatch(fetchOffersError(err))
+  })
+
+  return {
+    type: FETCH_DATA,
+    payload: request
+  };
+}

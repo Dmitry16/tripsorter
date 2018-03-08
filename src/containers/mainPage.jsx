@@ -12,18 +12,11 @@ export default class MainPage extends Component {
 
  render() {
 
-   const AppBarStyle = {
-     color: 'pink',
-     textAlign: 'center',
-   };
 
    return (
      <Fragment>
-
-         <SearchPage {...this.props}/>
-
-       <HorizontalLinearStepper />
-
+        <SearchPage {...this.props}/>
+        <HorizontalLinearStepper />
      </Fragment>
     )
   }
