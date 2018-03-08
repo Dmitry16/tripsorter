@@ -5,7 +5,7 @@ import { flex } from './flexes'
 
 export const Container_main = styled.div`
   width: 100%;
-  height: auto;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
