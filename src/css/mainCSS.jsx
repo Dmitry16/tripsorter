@@ -1,4 +1,7 @@
+'use strict';
+
 export const mainPaperStyle = {
+  color: 'rgb(100,100,100)',
   height: 'auto',
   width: 'auto',
   margin: 20,
@@ -22,5 +25,17 @@ export const AppBarStyle = {
 export const ActiveIconStyle1 = {
   fontColor:'red !important',
   fontSize: '30px',
+  margin:'5px',
+};
+export const hStyle = {
+  color: 'steelblue',
+  fontSize: '22px',
+  fontWeight: 500,
+  margin:'5px',
+};
+export const pStyle = {
+  // background: '#dddddd',
+  // color: 'rgb(100,100,100)',
+  fontSize: '18px',
   margin:'5px',
 };
