@@ -13,12 +13,6 @@ export default class MainPage extends Component {
  }
 
  render() {
-<<<<<<< HEAD
-
-   console.log('this.propxxx',this.props.sortedTrip);
-=======
-   console.log('this.propz:::',this.props.sortedTrip);
->>>>>>> new
 
    const AppBarStyle = {
      color: 'pink',
