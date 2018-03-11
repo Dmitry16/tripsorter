@@ -9,6 +9,6 @@ export function newSearch(strFrom, strTo, travelMode) {
 }
 export function resetSearch() {
   return {
-    type: 'RESET_SEARCH',
- }
+          type: 'RESET_SEARCH',
+        }
 }

@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+//APIs,Actions
+import { getFromLocalStorage } from '../api/localStorage';
+import { lsRecInjection } from '../actions/localStorage';
 //Assets
 import '../css/App.css';
 //Components
@@ -17,7 +20,15 @@ class App extends Component {
   constructor(props) {
     super(props);
   }
+
+  componentWillMount() {
+    let lsRec = getFromLocalStorage();
+    this.props.dispatch(lsRecInjection());
+    console.log('lsRec', lsRec);
+  }
+
   render() {
+
 
     const renderMainPage = () => {
       return (

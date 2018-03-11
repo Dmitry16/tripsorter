@@ -2,7 +2,7 @@ export default function searchResultsReducer(
   state={
     filteredData: false,
     visible: false,
-    sortedTrip: ['kuku'],
+    sortedTrip: [],
   }, action) {
 
   switch (action.type) {
