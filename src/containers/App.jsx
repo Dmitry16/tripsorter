@@ -1,13 +1,15 @@
 //Libs
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 //Assets
 import '../css/App.css';
 //Components
-import { connect } from 'react-redux';
-import { Container_main } from '../components/styled/styled-components/wrappers';
 import ErrorBoundary from '../components/errorBoundary';
+import { Container_main } from '../components/styled/styled-components/wrappers';
 import MainPage from './mainPage';
+import About from '../components/about';
+import { Header, Footer } from '../components/header';
 //Material-UI Components
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -22,16 +24,18 @@ class App extends Component {
         <MainPage {...this.props} />
       )
     }
-
     return (
       <Router>
-        <MuiThemeProvider>
-          <Container_main>
-            <ErrorBoundary>
-              <Route exact={true} path='/' render={renderMainPage} />
-            </ErrorBoundary>
-          </Container_main>
-        </MuiThemeProvider>
+        <ErrorBoundary>
+          <MuiThemeProvider>
+            <Container_main>
+              <Header />
+                <Route exact={true} path='/' render={renderMainPage} />
+                <Route exact={true} path='/about' component={About} />
+              <Footer />
+            </Container_main>
+          </MuiThemeProvider>
+        </ErrorBoundary>
       </Router>
     );
   }

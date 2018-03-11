@@ -37,7 +37,7 @@ let tripTotals = {};
 let mapped_list = [];
 let counter = 0;
 this.props.sortedTrip.map((trip,id)=>{
-    if (trip && id < 2 && (typeof trip === 'object'))
+    if (trip && id < 4 && (typeof trip === 'object'))
       mapped_list.push(
         <ListItem key={id} style={listItemStyle} primaryText={`${trip.departure} -
           ${trip.arrival}`} rightIcon={<ActionInfo />} >

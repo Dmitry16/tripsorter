@@ -1,3 +1,4 @@
+"use strict";
 export const filterCheapest = (arr) => {
   arr.sort((a, b) => {
     return parseInt(a.cost) - parseInt(b.cost);

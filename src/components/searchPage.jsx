@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
-import SearchForm from './form'
+import SearchForm from './form';
 import SearchResults from './searchResults';
+import * as styles from '../css/mainCSS';
 
 export default class SearchPage extends Component {
   constructor(props) {
@@ -10,34 +11,13 @@ export default class SearchPage extends Component {
 
   render() {
 
-    // console.log('this.props.firstPartTrip',this.props.firstPartTrip);
-
-    const mainPaperStyle = {
-      height: 'auto',
-      width: 'auto',
-      margin: 20,
-      padding: 10,
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'center',
-    };
-
-    const style1 = {
-      display: 'inline-block',
-      textAlign: 'center',
-      height: 450,
-      width: 300,
-      margin: 10,
-      padding: 20,
-    };
-
-    const style2 = {...style1,
+    const style2 = {...styles.style1,
       display: this.props.searchResultsBlockVisible ? 'inline-block' : 'none'
     };
 
     return (
-      <Paper style={mainPaperStyle} zDepth={1} >
-        <Paper style={style1} zDepth={2} >
+      <Paper style={styles.mainPaperStyle} zDepth={1} >
+        <Paper style={styles.style1} zDepth={2} >
           <SearchForm from={this.props.searchFrom} to={this.props.searchTo}
             dispatch={this.props.dispatch} />
         </Paper>
