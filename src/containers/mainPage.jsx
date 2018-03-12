@@ -11,6 +11,7 @@ export default class MainPage extends Component {
  }
 
  render() {
+   console.log('main page props:', this.props);
 
    return (
      <Fragment>
