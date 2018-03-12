@@ -3,15 +3,42 @@ export default function searchOptionsReducer(
     strFrom: '',
     strTo: '',
     travelMode: '',
-  }, action) {
+  }, action){
 
-  if(action.type==='NEW_SEARCH') {
+    switch (action.type) {
 
-    return {...state,
-      strFrom: action.payload[0],
-      strTo: action.payload[1],
-      travelMode: action.payload[2]
-    }
+      case ('NEW_SEARCH'): {
+        return {...state,
+          strFrom: action.payload[0],
+          strTo: action.payload[1],
+          travelMode: action.payload[2]
+        }
+      }
+      case ('LS_REC_INJ'): {
+        return {...state,
+          strFrom: action.payload[0],
+          strTo: action.payload[1],
+          travelMode: action.payload[2]
+        }
+      }
+      case ('NEW_LS_REC'): {
+        return {...state,
+          strFrom: action.payload[0],
+          strTo: action.payload[1],
+          travelMode: action.payload[2]
+        }
+      }
   }
   return state;
 }
+
+//   if(action.type==='NEW_SEARCH') {
+//
+//     return {...state,
+//       strFrom: action.payload[0],
+//       strTo: action.payload[1],
+//       travelMode: action.payload[2]
+//     }
+//   }
+//   return state;
+// }

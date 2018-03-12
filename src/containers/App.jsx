@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 //APIs,Actions
 import { getFromLocalStorage } from '../api/localStorage';
-import { lsRecInjection } from '../actions/localStorage';
+import { lsRecInjection } from '../actions/localStorageActions';
 //Assets
 import '../css/App.css';
 //Components
@@ -23,12 +23,11 @@ class App extends Component {
 
   componentWillMount() {
     let lsRec = getFromLocalStorage();
-    this.props.dispatch(lsRecInjection());
+    this.props.dispatch(lsRecInjection(...lsRec));
     console.log('lsRec', lsRec);
   }
 
   render() {
-
 
     const renderMainPage = () => {
       return (
@@ -56,6 +55,7 @@ const mapStateToProps = store => ({
     searchResultsBlockVisible: store.searchResults.visible,
     searchFrom: store.searchOptions.strFrom,
     searchTo: store.searchOptions.strTo,
+    travelMode: store.searchOptions.travelMode,
     sortedTrip: store.searchResults.sortedTrip,
   });
 

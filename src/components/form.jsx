@@ -2,9 +2,9 @@ import React, { Component, Fragment } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import { newSearch } from '../actions/searchActions'
-import { fetchData } from '../actions/fetchDataAction'
-
+import { newSearch } from '../actions/searchActions';
+import { fetchData } from '../actions/fetchDataAction';
+import { addToLocalStorage } from '../actions/localStorageActions';
 
 export default class SearchForm extends Component {
   constructor(props) {
@@ -54,11 +54,11 @@ export default class SearchForm extends Component {
 
   handleSubmit () {
     // console.log('props in form:', {...this.props});
-
     let [...searchParams] = [this.state.strFrom, this.state.strTo, this.state.travelMode];
 
     this.props.dispatch(newSearch(...searchParams));
     this.props.dispatch(fetchData(...searchParams));
+    this.props.dispatch(addToLocalStorage(...searchParams));
   }
 
   render() {

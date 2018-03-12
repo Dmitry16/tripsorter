@@ -4,7 +4,8 @@ export function newSearch(strFrom, strTo, travelMode) {
     payload: [
       strFrom,
       strTo,
-      travelMode]
+      travelMode
+    ]
   }
 }
 export function resetSearch() {
