@@ -1,9 +1,12 @@
 'use strict';
+
 import { filterCheapest, filterByObjProps, deleteRepeatingKeys, calculateTripTotals }
-  from './filterLib/filters'
+  from './filterLib/filters';
+
 const tripsFilter = (data, ...searchParams) => {
 
-  let [from, to, travelMode] = [...searchParams];
+  let [val1, val2, from, to, travelMode] = [...searchParams];
+  console.log('[from, to',from, to);
   let directTransport = [];
   let transPointsFrom = [];
   let transitTrips = [];

@@ -18,8 +18,7 @@ export default class SearchPage extends Component {
     return (
       <Paper style={styles.mainPaperStyle} zDepth={1} >
         <Paper style={styles.style1} zDepth={2} >
-          <SearchForm from={this.props.searchFrom} to={this.props.searchTo}
-            dispatch={this.props.dispatch} />
+          <SearchForm {...this.props} />
         </Paper>
         <Paper style={style2} zDepth={2} >
           <SearchResults

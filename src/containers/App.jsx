@@ -22,9 +22,12 @@ class App extends Component {
   }
 
   componentWillMount() {
-    let lsRec = getFromLocalStorage();
-    this.props.dispatch(lsRecInjection(...lsRec));
-    console.log('lsRec', lsRec);
+    let localStorageRec = getFromLocalStorage();
+
+    if (localStorageRec.length !== 0) {
+      console.log('localStorageRec',localStorageRec);
+      this.props.dispatch(lsRecInjection(localStorageRec));
+    }
   }
 
   render() {
@@ -53,6 +56,8 @@ class App extends Component {
 
 const mapStateToProps = store => ({
     searchResultsBlockVisible: store.searchResults.visible,
+    valueFrom: store.searchOptions.valueFrom,
+    valueTo: store.searchOptions.valueTo,
     searchFrom: store.searchOptions.strFrom,
     searchTo: store.searchOptions.strTo,
     travelMode: store.searchOptions.travelMode,

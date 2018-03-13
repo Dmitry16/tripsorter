@@ -1,7 +1,9 @@
-export function newSearch(strFrom, strTo, travelMode) {
+export function newSearch(  valueFrom, valueTo, strFrom, strTo, travelMode) {
   return {
     type: 'NEW_SEARCH',
     payload: [
+      valueFrom,
+      valueTo,
       strFrom,
       strTo,
       travelMode
