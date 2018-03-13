@@ -4,27 +4,29 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router-dom';
+import { hideInitialDialog } from '../../actions/initialDialogActions';
 
-/**
- * Dialog with action buttons. The actions are passed in as an array of React objects,
- * in this example [FlatButtons](/#/components/flat-button).
- *
- * You can also close this dialog by clicking outside the dialog, or with the 'Esc' key.
- */
 export default class InitialDialog extends React.Component {
   state = {
     open: true,
   };
 
-  // handleOpen = () => {
-  //   this.setState({open: true});
-  // };
+  componentDidMount(){
+    console.log('this.props.initialDialog',this.props.initialDialog);
+    this.setState({open: this.props.initialDialog});
+  }
+
+  componentWillUnmount(){
+    console.log('componentWillUnmount:this.props.initialDialog::',this.props.initialDialog);
+    this.props.dispatch(hideInitialDialog());
+  }
 
   handleStartTripSorter = () => {
     this.setState({open: false,
                   startTripSorter: true,
     });
   };
+
   handleStartReadAbout = () => {
     this.setState({open: false,
                   startReadAbout: true,
@@ -35,38 +37,33 @@ export default class InitialDialog extends React.Component {
     const actions = [
       <Link to='/mainPage'>
         <FlatButton
-          label="Start TripSorter"
+          label="Lounch TripSorter App"
           primary={true}
           onClick={this.handleStartTripSorter}
-        > Start TripSorter
+        >
         </FlatButton>
       </Link>,
-      <FlatButton
-        label="Read About"
-        primary={true}
-        disabled={true}
-        onClick={this.handleStartReadAbout}
-      />,
+      <Link to='/about'>
+        <FlatButton
+          label="Read About"
+          primary={true}
+          disabled={true}
+          onClick={this.handleStartReadAbout}
+        />
+      </Link>,
     ];
 
-    if (this.state.open === true) {
       return (
         <div>
           <Dialog
-            title="Dialog With Actions"
+            title="Welcome to TripSorter!"
             actions={actions}
             modal={true}
             open={this.state.open}
           >
-            Only actions can close this dialog.
+            What would you like to start with?
           </Dialog>
         </div>
       );
-    }
-    // else if (this.state.startTripSorter === true) {
-    //   return (
-    //     <Link to='/mainPage' />
-    //   )
-    // }
   }
 }
