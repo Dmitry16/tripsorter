@@ -14,6 +14,8 @@ import { Container_main } from '../components/styled/styled-components/wrappers'
 import MainPage from './mainPage';
 import About from '../components/about';
 import { Header, Footer } from '../components/header';
+import InitialDialog from '../components/materialUI/initialDialog';
+
 //Material-UI Components
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -45,7 +47,8 @@ class App extends Component {
           <MuiThemeProvider>
             <Container_main>
               <Header />
-                <Route exact={true} path='/' render={renderMainPage} />
+                <Route exact={true} path='/' component={InitialDialog} />
+                <Route exact={true} path='/mainpage' render={renderMainPage} />
                 <Route exact={true} path='/about' component={About} />
               <Footer />
             </Container_main>
