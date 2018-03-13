@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { getFromLocalStorage } from '../api/localStorage';
 import { lsRecInjection } from '../actions/localStorageActions';
 import { fetchData } from '../actions/fetchDataAction';
+import { showInitialDialog } from '../actions/initialDialogActions';
+
 //Assets
 import '../css/App.css';
 //Components
@@ -14,6 +16,7 @@ import { Container_main } from '../components/styled/styled-components/wrappers'
 import MainPage from './mainPage';
 import About from '../components/about';
 import { Header, Footer } from '../components/header';
+
 //Material-UI Components
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -30,6 +33,7 @@ class App extends Component {
       this.props.dispatch(lsRecInjection(localStorageRec[localStorageRec.length-1]));
       this.props.dispatch(fetchData(...localStorageRec[localStorageRec.length-1]));
     }
+    this.props.dispatch(showInitialDialog());
   }
 
   render() {
@@ -45,7 +49,7 @@ class App extends Component {
           <MuiThemeProvider>
             <Container_main>
               <Header />
-                <Route exact={true} path='/' render={renderMainPage} />
+                <Route exact={true} path='/mainpage' render={renderMainPage} />
                 <Route exact={true} path='/about' component={About} />
               <Footer />
             </Container_main>
@@ -64,6 +68,7 @@ const mapStateToProps = store => ({
     searchTo: store.searchOptions.strTo,
     travelMode: store.searchOptions.travelMode,
     sortedTrip: store.searchResults.sortedTrip,
+    initialDialog: store.appConfig.initialDialog,
   });
 
 export default connect(mapStateToProps)(App)

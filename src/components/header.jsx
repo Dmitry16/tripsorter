@@ -17,9 +17,9 @@ import { AppBarStyle } from '../css/mainCSS';
 export const Header = () => {
   return (
     <AppBar
-       style={AppBarStyle}
-       title="Welcome to Trip Sorter!"
-       iconClassNameRight="muidocs-icon-navigation-expand-more">
+      style={AppBarStyle}
+      title="Welcome to Trip Sorter!"
+      iconClassNameRight="muidocs-icon-navigation-expand-more">
     </AppBar>
   )
 }
