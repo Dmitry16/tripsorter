@@ -11,9 +11,9 @@ export default class SearchForm extends Component {
     super(props);
     this.state = {
       valueFrom: 1,
-      valueTo: 4,
+      valueTo: 5,
       strFrom: 'London',
-      strTo: 'Moscow',
+      strTo: 'Brussels',
       travelMode: 'cheapest',
       primaryCheapest: true,
       primaryFastest: false,
@@ -98,12 +98,11 @@ export default class SearchForm extends Component {
           <MenuItem value={2} primaryText="Paris" />
           <MenuItem value={3} primaryText="Amsterdam" />
           <MenuItem value={4} primaryText="Moscow" />
-          <MenuItem value={5} primaryText="Berlin" />
-          <MenuItem value={6} primaryText="Brussels" />
-          <MenuItem value={7} primaryText="Geneva" />
-          <MenuItem value={8} primaryText="Prague" />
-          <MenuItem value={9} primaryText="Budapest" />
-          <MenuItem value={10} primaryText="Madrid" />
+          <MenuItem value={5} primaryText="Brussels" />
+          <MenuItem value={6} primaryText="Geneva" />
+          <MenuItem value={7} primaryText="Prague" />
+          <MenuItem value={8} primaryText="Budapest" />
+          <MenuItem value={9} primaryText="Madrid" />
 
         </SelectField>
         <br />
@@ -117,12 +116,11 @@ export default class SearchForm extends Component {
         <MenuItem value={2} primaryText="Paris" />
         <MenuItem value={3} primaryText="Amsterdam" />
         <MenuItem value={4} primaryText="Moscow" />
-        <MenuItem value={5} primaryText="Berlin" />
-        <MenuItem value={6} primaryText="Brussels" />
-        <MenuItem value={7} primaryText="Geneva" />
-        <MenuItem value={8} primaryText="Prague" />
-        <MenuItem value={9} primaryText="Budapest" />
-        <MenuItem value={10} primaryText="Madrid" />
+        <MenuItem value={5} primaryText="Brussels" />
+        <MenuItem value={6} primaryText="Geneva" />
+        <MenuItem value={7} primaryText="Prague" />
+        <MenuItem value={8} primaryText="Budapest" />
+        <MenuItem value={9} primaryText="Madrid" />
 
         </SelectField>
         <br />
