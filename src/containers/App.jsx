@@ -2,6 +2,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+//APIs,Actions
+import { getFromLocalStorage } from '../api/localStorage';
+import { lsRecInjection } from '../actions/localStorageActions';
 //Assets
 import '../css/App.css';
 //Components
@@ -17,6 +20,16 @@ class App extends Component {
   constructor(props) {
     super(props);
   }
+
+  componentWillMount() {
+    let localStorageRec = getFromLocalStorage();
+
+    if (localStorageRec.length !== 0) {
+      console.log('localStorageRec',localStorageRec[localStorageRec.length-1]);
+      this.props.dispatch(lsRecInjection(localStorageRec[localStorageRec.length-1]));
+    }
+  }
+
   render() {
 
     const renderMainPage = () => {
@@ -43,8 +56,11 @@ class App extends Component {
 
 const mapStateToProps = store => ({
     searchResultsBlockVisible: store.searchResults.visible,
+    valueFrom: store.searchOptions.valueFrom,
+    valueTo: store.searchOptions.valueTo,
     searchFrom: store.searchOptions.strFrom,
     searchTo: store.searchOptions.strTo,
+    travelMode: store.searchOptions.travelMode,
     sortedTrip: store.searchResults.sortedTrip,
   });
 

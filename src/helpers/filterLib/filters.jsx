@@ -22,11 +22,10 @@ export const calculateTripTotals = (arr) => {
   tripTotals.totalDuration = 0;
   tripTotals.totalCost = 0;
   arr.forEach(key => {
-    console.log('zz',tripTotals.totalDuration +=
-    (parseInt(key.duration.h) * 60 + parseInt(key.duration.m))/60);
-    console.log(tripTotals.totalCost += (key.cost));
+    tripTotals.totalDuration +=
+    parseInt(key.duration.h) * 60 + parseInt(key.duration.m)/60;
+    tripTotals.totalCost += (key.cost);
   });
   arr.push(tripTotals.totalDuration, tripTotals.totalCost);
-  console.log('totals output',arr);
   return arr;
 }

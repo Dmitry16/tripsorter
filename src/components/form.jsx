@@ -2,9 +2,9 @@ import React, { Component, Fragment } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import { newSearch } from '../actions/searchActions'
-import { fetchData } from '../actions/fetchDataAction'
-
+import { newSearch } from '../actions/searchActions';
+import { fetchData } from '../actions/fetchDataAction';
+import { setToLocalStorage } from '../api/localStorage';
 
 export default class SearchForm extends Component {
   constructor(props) {
@@ -23,9 +23,18 @@ export default class SearchForm extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  componentDidMount() {
 
+  componentWillReceiveProps (nextProps) {
+    console.log('componentWillReceiveProps::',nextProps);
+    this.setState({
+      valueTo: nextProps.valueTo,
+      valueFrom: nextProps.valueFrom,
+      strFrom: nextProps.searchFrom,
+      strTo: nextProps.searchTo,
+      travelMode: nextProps.travelMode,
+    });
   }
+
   handleChangeFrom (e, ind, value) {
     this.setState({
       valueFrom: value,
@@ -33,7 +42,6 @@ export default class SearchForm extends Component {
     });
   }
   handleChangeTo (e, ind, value) {
-    // console.log('event target:', e.target.innerText);
     this.setState({
       valueTo: value,
       strTo: e.target.innerText,
@@ -53,15 +61,18 @@ export default class SearchForm extends Component {
   }
 
   handleSubmit () {
-    // console.log('props in form:', {...this.props});
-
-    let [...searchParams] = [this.state.strFrom, this.state.strTo, this.state.travelMode];
+    let [...searchParams] = [this.state.valueFrom, this.state.valueTo,
+      this.state.strFrom, this.state.strTo, this.state.travelMode];
 
     this.props.dispatch(newSearch(...searchParams));
     this.props.dispatch(fetchData(...searchParams));
+    setToLocalStorage(searchParams);
   }
 
   render() {
+
+    console.log('this.props in form to',this.props);
+    console.log('this.state',this.state);
 
     const buttonStyle = {
       margin: 0,
