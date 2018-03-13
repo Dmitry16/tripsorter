@@ -1,18 +1,11 @@
 export default function searchOptionsReducer(
   state={
-<<<<<<< HEAD
-    strFrom: 'London',
-    strTo: 'Moscow',
-    travelMode: 'cheapest',
-  }, action) {
-=======
     valueFrom: 1,
     valueTo: 4,
     strFrom: 'London',
     strTo: 'Moscow',
     travelMode: 'cheapest',
   }, action){
->>>>>>> new
 
     switch (action.type) {
 
