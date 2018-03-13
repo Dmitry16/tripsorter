@@ -10,7 +10,7 @@ export const validateInput = (submittedText) => {
 export const setToLocalStorage = (submittedText) => {
   let trips = getFromLocalStorage();
   if(!submittedText || trips.indexOf(submittedText)>-1) {
-    console.log('submittedText in setToLocalStorage', submittedText);    
+    console.log('submittedText in setToLocalStorage', submittedText);
     console.log('false from setToLocalStorage');
     return false;
   }
@@ -29,11 +29,6 @@ export const getFromLocalStorage = () => {
   }
 }
 
-export const removeFromLocalStorage = (invitee) => {
-  let trips = getFromLocalStorage("trips");
-  let inviteeIndex = trips.indexOf(invitee);
-  if ( inviteeIndex !== -1) {
-    trips.splice(inviteeIndex, 1);
-    localStorage.setItem('trips', JSON.stringify(trips));
-  }
+export const clearLocalStorage = () => {
+  localStorage.clear();
 }

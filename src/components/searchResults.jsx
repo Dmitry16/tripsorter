@@ -22,6 +22,7 @@ export default class SearchResults extends Component {
 
   handleReset() {
     this.props.dispatch(resetSearch());
+    localStorage.clear();
   }
 
   render() {
