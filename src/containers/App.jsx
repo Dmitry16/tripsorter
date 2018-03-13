@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 //APIs,Actions
 import { getFromLocalStorage } from '../api/localStorage';
 import { lsRecInjection } from '../actions/localStorageActions';
+import { fetchData } from '../actions/fetchDataAction';
 //Assets
 import '../css/App.css';
 //Components
@@ -27,6 +28,7 @@ class App extends Component {
     if (localStorageRec.length !== 0) {
       console.log('localStorageRec',localStorageRec[localStorageRec.length-1]);
       this.props.dispatch(lsRecInjection(localStorageRec[localStorageRec.length-1]));
+      this.props.dispatch(fetchData(...localStorageRec[localStorageRec.length-1]));
     }
   }
 
