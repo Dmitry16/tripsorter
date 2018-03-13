@@ -2,11 +2,11 @@ export const lsRecInjection = (localStorageRec) => {
   return {
     type: 'LS_REC_INJ',
     payload: [
-      localStorageRec[1][0],
-      localStorageRec[1][1],
-      localStorageRec[1][2],
-      localStorageRec[1][3],
-      localStorageRec[1][4],
+      localStorageRec[0],
+      localStorageRec[1],
+      localStorageRec[2],
+      localStorageRec[3],
+      localStorageRec[4],
     ]
   }
 }

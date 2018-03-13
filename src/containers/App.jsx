@@ -25,8 +25,8 @@ class App extends Component {
     let localStorageRec = getFromLocalStorage();
 
     if (localStorageRec.length !== 0) {
-      console.log('localStorageRec',localStorageRec);
-      this.props.dispatch(lsRecInjection(localStorageRec));
+      console.log('localStorageRec',localStorageRec[localStorageRec.length-1]);
+      this.props.dispatch(lsRecInjection(localStorageRec[localStorageRec.length-1]));
     }
   }
 

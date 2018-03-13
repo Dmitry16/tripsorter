@@ -25,11 +25,12 @@ export default class SearchForm extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
+    console.log('componentWillReceiveProps::',nextProps);
     this.setState({
       valueTo: nextProps.valueTo,
       valueFrom: nextProps.valueFrom,
-      strFrom: nextProps.from,
-      strTo: nextProps.to,
+      strFrom: nextProps.searchFrom,
+      strTo: nextProps.searchTo,
       travelMode: nextProps.travelMode,
     });
   }
