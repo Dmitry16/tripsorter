@@ -51,7 +51,6 @@ class App extends Component {
               <Header />
                 <Route exact={true} path='/mainpage' render={renderMainPage} />
                 <Route exact={true} path='/about' component={About} />
-              <Footer />
             </Container_main>
           </MuiThemeProvider>
         </ErrorBoundary>

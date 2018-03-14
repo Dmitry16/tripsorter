@@ -14,16 +14,30 @@ export default class About extends Component {
       <Paper style={styles.mainPaperStyle} zDepth={1} >
         <h3 style={styles.hStyle}>About the TripSorter Web App.</h3>
         <p style={styles.pStyle}>
-          This is an easily scalable single-page, responsive, progresive web app. Users can choose
+          This is an easily scalable (due to the flux application architecture) single-page, 
+          responsive, progresive web app.
+          <p> User can choose
           a travel route by setting up a starting point, destination point and a travel mode
           (cheap or fast). All searches are saved to the local storage. So when the page is
           reloaded it shows the last search was made by the user. To delete the saved searches
           user has to click on the "Reset" button.
-          The app gets data by an api call to an external resorse (in this case it is emulated).
-          Then handles the received data by filtering the requested route according to the
-          submitted options.
-          The tech stack: React.JS (v.16), Redux, Redax-Thunk, Axios, React Router, Webpack, Css Modules, 
-          Styled Components, Material-UI.
+          </p>
+          <p>
+          The app gets data in JSON format by an API call to an external resorse
+          (in this case it is emulated).
+          Then filters the received data and composes a route accordingly to the options submited
+          by user.
+          </p>
+          <ul>
+          <h4 style={styles.hStyle}>The tech stack used in development:</h4>
+            <li>React.JS (v.16)</li>
+            <li>Redux</li>
+            <li>React Router</li>
+            <li>Axios</li>
+            <li>Webpack</li>
+            <li>Styled Components</li>
+            <li>Material-UI</li>
+          </ul>
         </p>
         <IconButton iconClassName="muidocs-icon-custom-github"
           iconStyle={{}}
