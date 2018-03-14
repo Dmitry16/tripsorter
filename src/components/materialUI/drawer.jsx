@@ -55,12 +55,12 @@ export default class MenuDrawer extends React.Component {
         <Link style={{textDecoration:'none'}} to="/mainPage">
           <MenuItem primaryText="Main Page"  onClick={ this.handleClose } leftIcon={<Home />} />
         </Link>
-        <MenuItem primaryText="Source Code" leftIcon={
-          <a href='https://github.com/Dmitry16/tripsorter/'>
-            <Code />
-          </a>
-          }
-        />        </Drawer>
+        <a  style={{textDecoration:'none'}} href='https://github.com/Dmitry16/tripsorter/tree/master'>
+          <MenuItem primaryText="Source Code" leftIcon={
+              <Code />}
+          />
+        </a>
+        </Drawer>
       </div>
     );
   }
