@@ -35,7 +35,7 @@ export default class InitialDialog extends React.Component {
 
   render() {
     const actions = [
-      <Link to='/mainPage'>
+      <Link to='/tripsorter/'>
         <FlatButton
           label="Lounch TripSorter App"
           primary={true}
@@ -43,7 +43,7 @@ export default class InitialDialog extends React.Component {
         >
         </FlatButton>
       </Link>,
-      <Link to='/about'>
+      <Link to='/tripsorter/about'>
         <FlatButton
           label="Read About"
           primary={true}

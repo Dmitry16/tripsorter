@@ -3,7 +3,6 @@ import Drawer from 'material-ui/Drawer';
 import RaisedButton from 'material-ui/RaisedButton';
 import Navigation from 'material-ui/svg-icons/navigation/menu';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import Menu from './menu';
 import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
@@ -49,10 +48,10 @@ export default class MenuDrawer extends React.Component {
             </IconButton>}
         />
 
-        <Link style={{textDecoration:'none'}} to="/about">
+        <Link style={{textDecoration:'none'}} to="/tripsorter/about">
           <MenuItem primaryText="About" onClick={ this.handleClose } leftIcon={<RemoveRedEye />} />
         </Link>
-        <Link style={{textDecoration:'none'}} to="/mainPage">
+        <Link style={{textDecoration:'none'}} to="/tripsorter/">
           <MenuItem primaryText="Main Page"  onClick={ this.handleClose } leftIcon={<Home />} />
         </Link>
         <a  style={{textDecoration:'none'}} href='https://github.com/Dmitry16/tripsorter/tree/master'>
