@@ -21,9 +21,7 @@ export default class SearchPage extends Component {
           <SearchForm {...this.props} />
         </Paper>
         <Paper style={style2} zDepth={2} >
-          <SearchResults
-            {...this.props}
-          />
+          <SearchResults {...this.props} />
         </Paper>
       </Paper>
     );

@@ -12,12 +12,10 @@ export default class InitialDialog extends React.Component {
   };
 
   componentDidMount(){
-    console.log('this.props.initialDialog',this.props.initialDialog);
     this.setState({open: this.props.initialDialog});
   }
 
   componentWillUnmount(){
-    console.log('componentWillUnmount:this.props.initialDialog::',this.props.initialDialog);
     this.props.dispatch(hideInitialDialog());
   }
 
@@ -35,7 +33,7 @@ export default class InitialDialog extends React.Component {
 
   render() {
     const actions = [
-      <Link to='/mainPage'>
+      <Link to='/'>
         <FlatButton
           label="Lounch TripSorter App"
           primary={true}

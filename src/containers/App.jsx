@@ -49,7 +49,7 @@ class App extends Component {
           <MuiThemeProvider>
             <Container_main>
               <Header />
-                <Route exact={true} path='/mainpage' render={renderMainPage} />
+                <Route exact={true} path='/' render={renderMainPage} />
                 <Route exact={true} path='/about' component={About} />
             </Container_main>
           </MuiThemeProvider>
