@@ -10,7 +10,7 @@ export const mainPaperStyle = {
   flexWrap: 'wrap',
   justifyContent: 'center',
 };
-export const style1 = {
+export const protoStyle = {
   display: 'inline-block',
   textAlign: 'center',
   height: 'auto',
