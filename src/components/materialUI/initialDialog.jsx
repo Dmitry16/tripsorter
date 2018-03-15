@@ -33,11 +33,7 @@ export default class InitialDialog extends React.Component {
 
   render() {
     const actions = [
-<<<<<<< HEAD
       <Link to='/tripsorter/'>
-=======
-      <Link to='/'>
->>>>>>> new
         <FlatButton
           label="Lounch TripSorter App"
           primary={true}

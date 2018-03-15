@@ -48,14 +48,10 @@ export default class MenuDrawer extends React.Component {
             </IconButton>}
         />
 
-        <Link style={{textDecoration:'none'}} to="/tripsorter/about">
+        <Link style={{textDecoration:'none'}} to="/about">
           <MenuItem primaryText="About" onClick={ this.handleClose } leftIcon={<RemoveRedEye />} />
         </Link>
-<<<<<<< HEAD
-        <Link style={{textDecoration:'none'}} to="/tripsorter/">
-=======
-        <Link style={{textDecoration:'none'}} to="/">
->>>>>>> new
+        <Link style={{textDecoration:'none'}} to="/tripsorter">
           <MenuItem primaryText="Main Page"  onClick={ this.handleClose } leftIcon={<Home />} />
         </Link>
         <a  style={{textDecoration:'none'}} href='https://github.com/Dmitry16/tripsorter/tree/master'>
