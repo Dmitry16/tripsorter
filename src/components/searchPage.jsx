@@ -7,6 +7,10 @@ import * as styles from '../css/mainCSS';
 export default class SearchPage extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+
+    }
   }
 
   render() {
@@ -22,6 +26,9 @@ export default class SearchPage extends Component {
         </Paper>
         <Paper style={style2} zDepth={2} >
           <SearchResults {...this.props} />
+        </Paper>
+        <Paper style={style2} zDepth={2} >
+          <SearchDetails {...this.props} />
         </Paper>
       </Paper>
     );
