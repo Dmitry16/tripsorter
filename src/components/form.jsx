@@ -5,6 +5,7 @@ import MenuItem from 'material-ui/MenuItem';
 import { newSearch } from '../actions/searchActions';
 import { fetchData } from '../actions/fetchDataAction';
 import { setToLocalStorage } from '../api/localStorage';
+import ProgressLoading from './materialUI/progressLoading';
 
 export default class SearchForm extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ export default class SearchForm extends Component {
       travelMode: 'cheapest',
       primaryCheapest: true,
       primaryFastest: false,
+      progressLoadingStatus:'hide',
     }
     this.handleChangeFrom = this.handleChangeFrom.bind(this);
     this.handleChangeTo = this.handleChangeTo.bind(this);
@@ -24,14 +26,22 @@ export default class SearchForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillMount () {
+    console.log('%c progressLoadingStatus111','color: green',this.state);
+    this.setState({progressLoadingStatus:
+                  (this.state.progressLoadingStatus === 'loading') ? 'ready' : 'hide'
+                });
+  }
+
   componentWillReceiveProps (nextProps) {
-    console.log('componentWillReceiveProps::',nextProps);
+    console.log('%c componentWillReceiveProps::','color:green;font-size:15px',nextProps);
     this.setState({
       valueTo: nextProps.valueTo,
       valueFrom: nextProps.valueFrom,
       strFrom: nextProps.searchFrom,
       strTo: nextProps.searchTo,
       travelMode: nextProps.travelMode,
+      progressLoadingStatus: (this.state.progressLoadingStatus === 'loading') ? 'hide' : 'loading',
     });
   }
 
@@ -67,12 +77,13 @@ export default class SearchForm extends Component {
     this.props.dispatch(newSearch(...searchParams));
     this.props.dispatch(fetchData(...searchParams));
     setToLocalStorage(searchParams);
+    this.setState({progressLoadingStatus: 'loading'});
   }
 
   render() {
 
-    console.log('this.props in form to',this.props);
-    console.log('this.state',this.state);
+    console.log('this.props in form',this.props);
+    console.log('this.state in form',this.state);
 
     const buttonStyle = {
       margin: 0,
@@ -130,6 +141,7 @@ export default class SearchForm extends Component {
           style={buttonStyle} onClick={this.handleClick} />
         <RaisedButton label="Search" secondary={true} fullWidth={true}
         style={{marginTop:10}} onClick={this.handleSubmit} />
+        <ProgressLoading status={this.state.progressLoadingStatus} />
       </Fragment>
     );
   }
