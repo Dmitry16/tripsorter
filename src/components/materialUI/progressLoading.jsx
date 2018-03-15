@@ -3,6 +3,7 @@ import RefreshIndicator from 'material-ui/RefreshIndicator';
 
 const style = {
   container: {
+    top: '0',
     left: '0',
     display: 'flex',
     position: 'absolute',
@@ -14,17 +15,22 @@ const style = {
   },
 };
 
-const getPos = () => {
-  let pos = window.innerWidth/2-50;
-  console.log('POS!!!!',pos,window.innerWidth);
-  return pos;
+const getTop = () => {
+  let posTop = window.innerHeight/2-50;
+  return posTop;
 }
+
+const getLeft = () => {
+  let posLeft = window.innerWidth/2-50;
+  return posLeft;
+}
+
 const ProgressLoading = (props) => (
   <div style={style.container}>
     <RefreshIndicator
       size={100}
-      left={getPos()}
-      top={0}
+      left={getLeft()}
+      top={getTop()}
       loadingColor="#FF9800"
       status={props.status}
       style={style.refresh}
