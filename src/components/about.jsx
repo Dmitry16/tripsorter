@@ -14,7 +14,7 @@ export default class About extends Component {
       <Paper style={styles.mainPaperStyle} zDepth={1} >
         <h3 style={styles.hStyle}>About the TripSorter Web App.</h3>
         <p style={styles.pStyle}>
-          This is an easily scalable (due to the flux application architecture) single-page, 
+          This is an easily scalable (due to the flux application architecture) single-page,
           responsive, progresive web app.
           <p> User can choose
           a travel route by setting up a starting point, destination point and a travel mode
@@ -33,8 +33,9 @@ export default class About extends Component {
             <li>React.JS (v.16)</li>
             <li>Redux</li>
             <li>React Router</li>
-            <li>Axios</li>
             <li>Webpack</li>
+            <li>Axios</li>
+            <li>CSS Modules</li>
             <li>Styled Components</li>
             <li>Material-UI</li>
           </ul>
