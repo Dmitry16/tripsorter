@@ -13,13 +13,12 @@ export default class SearchList extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
-    this.setState({
-      showTripDetails: true,
-    })
+  handleClick = (mapped_list) => {
+      this.props.callback(mapped_list);
   }
 
   render() {
+    console.log('%c state in SearchList:::','color:blue;',this.state);
 
     const additionalInfoStyle = {
       fontSize: '12px',
@@ -45,7 +44,7 @@ export default class SearchList extends Component {
     this.props.sortedTrip.map((trip,id)=>{
         if (trip && id < 4 && (typeof trip === 'object'))
           mapped_list.push(
-            <ListItem key={id} onClick={this.handleClick} style={listItemStyle} primaryText={`${trip.departure} -
+            <ListItem key={id} onClick={()=>this.handleClick(mapped_list)} style={listItemStyle} primaryText={`${trip.departure} -
               ${trip.arrival}`} rightIcon={<ActionInfo />} >
               <p style={additionalInfoStyle}>{`${trip.transport} ${trip.reference}
               ${trip.duration.h}h${trip.duration.m} ${trip.cost}€`}</p>

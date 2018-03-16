@@ -38,3 +38,28 @@ export const pStyle = {
   fontSize: '18px',
   margin:'5px',
 };
+export const buttonStyle = {
+  margin: 0,
+  width: '50%',
+  marginTop:10,
+};
+export const h2Style = {
+  fontWeight: 400,
+};
+export const additionalInfoStyle = {
+  fontSize: '12px',
+  color: 'steelblue',
+}
+export const listItemStyle = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+}
+export const divTotalStyle = {
+  color: 'white',
+  fontWeight: 100,
+  background: 'lightgray',
+  padding: '10px 2px',
+  margin: '8px 0 -10px',
+}

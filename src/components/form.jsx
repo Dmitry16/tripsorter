@@ -41,7 +41,8 @@ export default class SearchForm extends Component {
       strFrom: nextProps.searchFrom,
       strTo: nextProps.searchTo,
       travelMode: nextProps.travelMode,
-      progressLoadingStatus: (this.state.progressLoadingStatus === 'loading') ? 'hide' : 'loading',
+      progressLoadingStatus: (this.state.progressLoadingStatus === 'loading'
+                              || !nextProps.searchResultsBlockVisible) ? 'hide' : 'loading',
     });
   }
 
