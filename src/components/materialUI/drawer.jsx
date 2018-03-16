@@ -48,7 +48,7 @@ export default class MenuDrawer extends React.Component {
             </IconButton>}
         />
 
-        <Link style={{textDecoration:'none'}} to="/about">
+        <Link style={{textDecoration:'none'}} to="/tripsorter/about">
           <MenuItem primaryText="About" onClick={ this.handleClose } leftIcon={<RemoveRedEye />} />
         </Link>
         <Link style={{textDecoration:'none'}} to="/tripsorter">
