@@ -23,7 +23,7 @@ export const calculateTripTotals = (arr) => {
   tripTotals.totalCost = 0;
   arr.forEach(key => {
     tripTotals.totalDuration +=
-    parseInt(key.duration.h) * 60 + parseInt(key.duration.m)/60;
+    parseInt(key.duration.h) + parseInt(key.duration.m)/60;
     tripTotals.totalCost += (key.cost);
   });
   arr.push(tripTotals.totalDuration, tripTotals.totalCost);
